@@ -14,8 +14,7 @@ function* workerDanhSachSanPham(action) {
 }
 
 function* workerCreateNewSanPham(action) {
-    console.log(action.data);
     try {
-        yield put({ type: Actions.CREATE_NEW_SAN_PHAM, data: action.data });
+        yield put({ type: Actions.SAVE_SAN_PHAM, data: action.data });
     } catch (error) { }
 }

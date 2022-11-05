@@ -12,30 +12,13 @@ const initialSate = {
 
 export default (state = initialSate, action) => {
     switch (action.type) {
-        case Actions.DANH_SACH_SAN_PHAM: {
-            switch (action.ttype) {
-                case Actions.CREATE_NEW_SAN_PHAM: {
-                    const { data = {} } = action
-                    const { sanPham } = data;
-                    let copyDanhSachSanPham = [...state.danhSachSanPham];
-                    copyDanhSachSanPham.push(sanPham);
-                    return {
-                        ...state,
-                        danhSachSanPham: copyDanhSachSanPham
-                    }
-                }
 
-                default:
-                    return state;
-            }
-        }
-
-        case Actions.CREATE_NEW_SAN_PHAM: {
+        case Actions.SAVE_SAN_PHAM: {
             console.log("action create new called");
             const { data = {} } = action
             const { sanPham } = data;
             let copyDanhSachSanPham = [...state.danhSachSanPham];
-            copyDanhSachSanPham.push(sanPham);
+            copyDanhSachSanPham.unshift(sanPham);
             return {
                 ...state,
                 danhSachSanPham: copyDanhSachSanPham

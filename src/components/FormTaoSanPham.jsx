@@ -36,6 +36,9 @@ const FormTaoSanPham = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+        <Form.Item name="id">
+          <Input defaultValue="3" value="2" />
+        </Form.Item>
         <Form.Item
           label="Tên"
           name="ten"
