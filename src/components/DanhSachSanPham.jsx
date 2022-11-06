@@ -1,9 +1,10 @@
-import { Typography, Divider, Card, Image, Space, Col, Row, Badge } from "antd";
+import { Typography, Divider, Space, Col, Row, Badge } from "antd";
 import React from "react";
 import { useSelector } from "react-redux/es/exports";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
 import "antd/dist/antd.css";
+import SanPham from "./SanPham";
 
 const DanhSachSanPham = () => {
   const danhSachSanPham = useSelector(
@@ -48,17 +49,7 @@ const DanhSachSanPham = () => {
         style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
       >
         {danhSachSanPham
-          ? danhSachSanPham.map((sanPham) => (
-              <Card
-                style={{
-                  width: 300,
-                }}
-              >
-                <Image width={250} src={sanPham.linkHinhAnh} />
-                <h3>{sanPham.ten}</h3>
-                <p>{sanPham.donGia}</p>
-              </Card>
-            ))
+          ? danhSachSanPham.map((sanPham) => <SanPham sanPham={sanPham} />)
           : null}
       </Space>
     </React.Fragment>

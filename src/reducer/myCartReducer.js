@@ -16,6 +16,9 @@ export default (state = initialSate, action) => {
         case Actions.MY_CART: {
             return state;
         }
+        case Actions.SAVE_ITEM_TO_CART: {
+            console.log(action.data);
+        }
         default:
             return state;
     }
