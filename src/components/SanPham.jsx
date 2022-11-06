@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Image, Form, InputNumber, Button } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Actions from "../actionsTypes";
 
 const SanPham = ({ sanPham }) => {
   const dispatch = useDispatch();
+  const myCart = useSelector((state) => state.myCartReducer.myCart);
+  const [soLuong, setSoLuong] = useState();
+
+  useEffect(() => {
+    const index = myCart.danhSachSanPham?.findIndex(
+      (element) => element.id === sanPham.id
+    );
+    if (index > -1) setSoLuong(myCart.danhSachSanPham[index].soLuongSanPham);
+  }, [myCart]);
+
   const onFinish = (values) => {
     dispatch({
       type: Actions.ADD_TO_CART,
       data: {
-        sanPham: sanPham,
-        soLuong: values.soLuong,
+        sanPham: { ...sanPham, soLuongSanPham: values.soLuong },
       },
     });
   };
@@ -27,6 +36,7 @@ const SanPham = ({ sanPham }) => {
       <Image width={250} src={sanPham.linkHinhAnh} />
       <h3>{sanPham.ten}</h3>
       <p>{sanPham.donGia}</p>
+      <p>Sản phẩm trong giỏ hàng : {soLuong ? soLuong : 0}</p>
       <Form
         name="myCart"
         layout="horizontal"
@@ -45,6 +55,7 @@ const SanPham = ({ sanPham }) => {
         autoComplete="off"
       >
         <Form.Item
+          initialValue={soLuong ? soLuong : 1}
           label="Số lượng"
           name="soLuong"
           labelCol={{
@@ -57,11 +68,11 @@ const SanPham = ({ sanPham }) => {
           rules={[
             {
               required: true,
-              message: "Vui lòng nhập đơn giá!",
+              message: "Vui lòng nhập số lượng!",
             },
           ]}
         >
-          <InputNumber />
+          <InputNumber value={soLuong} />
         </Form.Item>
         <Form.Item
           wrapperCol={{

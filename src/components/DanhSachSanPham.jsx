@@ -1,5 +1,5 @@
 import { Typography, Divider, Space, Col, Row, Badge } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux/es/exports";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
@@ -16,8 +16,6 @@ const DanhSachSanPham = () => {
   const { soLuong } = myCart;
 
   console.log("myCart", myCart);
-
-  console.log("danh sach", danhSachSanPham);
 
   const { Title } = Typography;
   return (

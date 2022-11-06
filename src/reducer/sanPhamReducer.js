@@ -14,8 +14,7 @@ export default (state = initialSate, action) => {
     switch (action.type) {
 
         case Actions.SAVE_SAN_PHAM: {
-            console.log("action create new called");
-            const { data = {} } = action
+            const { data = {} } = action;
             const { sanPham } = data;
             let copyDanhSachSanPham = [...state.danhSachSanPham];
             copyDanhSachSanPham.unshift(sanPham);
