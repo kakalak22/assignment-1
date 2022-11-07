@@ -37,7 +37,7 @@ const FormTaoSanPham = () => {
         autoComplete="off"
       >
         <Form.Item name="id">
-          <Input defaultValue="3" value="2" />
+          <Input />
         </Form.Item>
         <Form.Item
           label="Tên"

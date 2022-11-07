@@ -5,6 +5,7 @@ import * as Actions from "./actionsTypes";
 import { useEffect } from 'react';
 import DanhSachSanPham from './components/DanhSachSanPham';
 import FormTaoSanPham from './components/FormTaoSanPham';
+import MyCart from './components/MyCart';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,10 @@ function App() {
   return (
     <div className="App">
       <DanhSachSanPham />
+      <MyCart />
       <FormTaoSanPham />
+      {/**
+     */}
     </div>
   );
 }

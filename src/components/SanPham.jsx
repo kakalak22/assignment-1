@@ -55,7 +55,6 @@ const SanPham = ({ sanPham }) => {
         autoComplete="off"
       >
         <Form.Item
-          initialValue={soLuong ? soLuong : 1}
           label="Số lượng"
           name="soLuong"
           labelCol={{
@@ -72,7 +71,7 @@ const SanPham = ({ sanPham }) => {
             },
           ]}
         >
-          <InputNumber value={soLuong} />
+          <InputNumber />
         </Form.Item>
         <Form.Item
           wrapperCol={{

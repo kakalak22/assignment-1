@@ -3,12 +3,87 @@ import { delay, takeEvery, takeLatest, takeLeading, select, put, take, all, fork
 import * as Actions from "../actionsTypes";
 
 export function* watcherDonHang() {
-    yield takeEvery(Actions.DANH_SACH_DON_HANG, workerDanhSachDonHang);
+    yield takeLatest(Actions.THANH_TOAN_DON_HANG, workerThanhToanDonHang);
+    yield takeLatest(Actions.SAVE_DON_HANG_PROCESS, workerSaveDonHangProcess);
+
 }
 
-function* workerDanhSachDonHang(action) {
-    const danhSachDonHang = yield select(state =>
-        state.donHangReducer.danhSachDonHang
-    );
-    console.log(danhSachDonHang);
+
+function* workerThanhToanDonHang(action) {
+    try {
+        console.log("THANH TOAN DON HANG WORKER");
+        const { data = {} } = action;
+        const { myCart } = data;
+        const { tongCong, tongTruocThue, tongThue } = myCart;
+
+        const donHang = yield select(state => state.donHangReducer.donHang);
+
+        const newDonHang = {
+            id: 2,
+            ten: "don hang 3",
+            tongTruocThue: tongTruocThue,
+            tongThue: tongThue,
+            tongTien: tongCong
+        }
+
+        let copyDonHang = [newDonHang, ...donHang];
+
+        yield put({
+            type: Actions.SAVE_DON_HANG,
+            data: {
+                copyDonHang: copyDonHang
+            }
+        })
+
+        yield put({
+            type: Actions.SAVE_DON_HANG_PROCESS
+        })
+        let res = yield take(Actions.SAVE_DON_HANG_SUCCESS);
+        const { isEqual } = res.data;
+
+        yield put({
+            type: Actions.SAVE_DONG_DON_HANG,
+            data: {
+                newDongDonHang: [...myCart.danhSachSanPham]
+            }
+        })
+
+        yield take(Actions.SAVE_DONG_DON_HANG_SUCCESS);
+        console.log("dong don hang successfully saved");
+
+        if (!isEqual) {
+            yield put({
+                type: Actions.SAVE_ITEM_TO_CART,
+                data: {
+                    newMyCart: {
+                        danhSachSanPham: [
+                        ],
+                        tongCong: 0,
+                        tongThue: 0,
+                        tongTruocThue: 0,
+                        soLuong: 0
+                    }
+                }
+            })
+        }
+
+    } catch (error) { }
 }
+
+function* workerSaveDonHangProcess(action) {
+    try {
+        console.log("save don hang process");
+        const { data = {} } = action;
+        const { prevDonHang } = data;
+        const donHang = yield select(state => state.donHangReducer.donHang);
+        const isEqual = JSON.stringify(prevDonHang) === JSON.stringify(donHang);
+
+        yield put({
+            type: Actions.SAVE_DON_HANG_SUCCESS,
+            data: {
+                isEqual: isEqual
+            }
+        })
+    } catch (error) { }
+}
+

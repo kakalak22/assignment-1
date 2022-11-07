@@ -1,7 +1,7 @@
 import * as Actions from "../actionsTypes";
 
 const initialSate = {
-    danhSachDongDonHang: [
+    dongDonHang: [
         { idSanPham: 1, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },
         { idSanPham: 2, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },
         { idSanPham: 3, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },

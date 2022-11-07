@@ -13,9 +13,7 @@ const DanhSachSanPham = () => {
 
   const myCart = useSelector((state) => state.myCartReducer.myCart);
 
-  const { soLuong } = myCart;
-
-  console.log("myCart", myCart);
+  const { soLuong = 0 } = myCart;
 
   const { Title } = Typography;
   return (
@@ -47,7 +45,9 @@ const DanhSachSanPham = () => {
         style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
       >
         {danhSachSanPham
-          ? danhSachSanPham.map((sanPham) => <SanPham sanPham={sanPham} />)
+          ? danhSachSanPham.map((sanPham, index) => (
+              <SanPham key={index} sanPham={sanPham} />
+            ))
           : null}
       </Space>
     </React.Fragment>
