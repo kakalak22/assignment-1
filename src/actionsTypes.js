@@ -22,5 +22,6 @@ export const SAVE_DON_HANG_PROCESS = "save_don_hang_process";
 
 //dong don hang
 export const SAVE_DONG_DON_HANG = "save_dong_don_hang";
-export const SAVE_DONG_DON_HANG_PROCESS = "save_dong_don_hang_process";
+export const DO_SAVE_DONG_DON_HANG = "do_save_dong_don_hang";
+export const CHECK_SAVE_DONG_DON_HANG = "check_save_dong_don_hang";
 export const SAVE_DONG_DON_HANG_SUCCESS = "save_dong_don_hang_success";

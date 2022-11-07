@@ -39,19 +39,21 @@ function* workerThanhToanDonHang(action) {
             type: Actions.SAVE_DON_HANG_PROCESS
         })
         let res = yield take(Actions.SAVE_DON_HANG_SUCCESS);
-        const { isEqual } = res.data;
+        const { isDonHangEqual } = res.data;
 
         yield put({
             type: Actions.SAVE_DONG_DON_HANG,
             data: {
+                newIdDonHang: 2,
                 newDongDonHang: [...myCart.danhSachSanPham]
             }
         })
 
-        yield take(Actions.SAVE_DONG_DON_HANG_SUCCESS);
+        const resSaveDongDonHang = yield take(Actions.SAVE_DONG_DON_HANG_SUCCESS);
+        const { isDongDonHangEqual } = resSaveDongDonHang.data;
         console.log("dong don hang successfully saved");
 
-        if (!isEqual) {
+        if (!isDonHangEqual && !isDongDonHangEqual) {
             yield put({
                 type: Actions.SAVE_ITEM_TO_CART,
                 data: {
@@ -81,7 +83,7 @@ function* workerSaveDonHangProcess(action) {
         yield put({
             type: Actions.SAVE_DON_HANG_SUCCESS,
             data: {
-                isEqual: isEqual
+                isDonHangEqual: isEqual
             }
         })
     } catch (error) { }

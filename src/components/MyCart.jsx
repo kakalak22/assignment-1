@@ -7,6 +7,7 @@ import * as Actions from "../actionsTypes";
 const MyCart = () => {
   const { Title, Text } = Typography;
   const { myCart = {} } = useSelector((state) => state.myCartReducer);
+
   const { danhSachSanPham } = myCart;
   const dispatch = useDispatch();
 

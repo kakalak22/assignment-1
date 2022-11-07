@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import DanhSachSanPham from './components/DanhSachSanPham';
 import FormTaoSanPham from './components/FormTaoSanPham';
 import MyCart from './components/MyCart';
+import DanhSachDonHang from './components/DanhSachDonHang';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,8 +30,9 @@ function App() {
     <div className="App">
       <DanhSachSanPham />
       <MyCart />
-      <FormTaoSanPham />
+      <DanhSachDonHang />
       {/**
+      <FormTaoSanPham />
      */}
     </div>
   );

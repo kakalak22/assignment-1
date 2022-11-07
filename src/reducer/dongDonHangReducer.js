@@ -2,16 +2,27 @@ import * as Actions from "../actionsTypes";
 
 const initialSate = {
     dongDonHang: [
-        { idSanPham: 1, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },
-        { idSanPham: 2, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },
-        { idSanPham: 3, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },
+        {
+            idDonHang: 1,
+            danhSachDongDonHang: [
+                { idSanPham: 1, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },
+                { idSanPham: 2, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },
+                { idSanPham: 3, soLuong: 1, donGia: 10, tongTienTruocThue: 5, tongTienThue: null },
+            ]
+        }
     ]
 }
 
 export default (state = initialSate, action) => {
     switch (action.type) {
-        case Actions.DANH_SACH_DONG_DON_HANG: {
-            return state;
+        case Actions.DO_SAVE_DONG_DON_HANG: {
+            const { data = {} } = action;
+            const { copyDongDonHang } = data;
+            console.log(copyDongDonHang)
+            return {
+                ...state,
+                dongDonHang: copyDongDonHang
+            };
         }
         default:
             return state;
