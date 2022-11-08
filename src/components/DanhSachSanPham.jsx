@@ -17,16 +17,15 @@ const DanhSachSanPham = () => {
 
   const { Title } = Typography;
   return (
-    <React.Fragment>
+    <Space direction="vertical">
       <Row>
-        <Col span={8}></Col>
-        <Col span={8}>
+        <Col span={22}>
           <Typography style={{ marginTop: "1rem" }}>
             <Title level={1}>Danh Sách Sản Phẩm</Title>
           </Typography>
         </Col>
         <Col
-          span={8}
+          span={2}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -50,7 +49,7 @@ const DanhSachSanPham = () => {
             ))
           : null}
       </Space>
-    </React.Fragment>
+    </Space>
   );
 };
 

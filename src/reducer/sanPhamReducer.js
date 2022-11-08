@@ -15,9 +15,7 @@ export default (state = initialSate, action) => {
 
         case Actions.SAVE_SAN_PHAM: {
             const { data = {} } = action;
-            const { sanPham } = data;
-            let copyDanhSachSanPham = [...state.danhSachSanPham];
-            copyDanhSachSanPham.unshift(sanPham);
+            const { copyDanhSachSanPham } = data;
             return {
                 ...state,
                 danhSachSanPham: copyDanhSachSanPham

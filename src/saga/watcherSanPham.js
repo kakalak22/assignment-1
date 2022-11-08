@@ -1,5 +1,5 @@
 import { delay, takeEvery, takeLatest, takeLeading, select, put, take, all, fork, spawn, call } from "redux-saga/effects";
-
+import { v4 as uuidv4 } from 'uuid';
 import * as Actions from "../actionsTypes";
 
 export function* watcherSanPham() {
@@ -15,6 +15,19 @@ function* workerDanhSachSanPham(action) {
 
 function* workerCreateNewSanPham(action) {
     try {
-        yield put({ type: Actions.SAVE_SAN_PHAM, data: action.data });
+        const newId = uuidv4();
+        const { danhSachSanPham } = yield select(state => state.sanPhamReducer)
+        const { data = {} } = action;
+
+        const { sanPham, imgUrl } = data;
+        let copyDanhSachSanPham = [{
+            id: newId, ...sanPham, linkHinhAnh: imgUrl
+        }, ...danhSachSanPham];
+        yield put({
+            type: Actions.SAVE_SAN_PHAM, data:
+            {
+                copyDanhSachSanPham: copyDanhSachSanPham
+            }
+        });
     } catch (error) { }
 }

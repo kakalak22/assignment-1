@@ -1,39 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-import { useDispatch } from 'react-redux';
-import * as Actions from "./actionsTypes";
-import { useEffect } from 'react';
 import DanhSachSanPham from './components/DanhSachSanPham';
 import FormTaoSanPham from './components/FormTaoSanPham';
 import MyCart from './components/MyCart';
 import DanhSachDonHang from './components/DanhSachDonHang';
+import { Route, Routes } from 'react-router-dom'
+import PageLayout from './components/PageLayout';
+import "./App.css";
+
+
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({
-      type: Actions.DANH_SACH_SAN_PHAM
-    });
-    dispatch({
-      type: Actions.DANH_SACH_DON_HANG
-    })
-    dispatch({
-      type: Actions.DANH_SACH_DONG_DON_HANG
-    })
-    dispatch({
-      type: Actions.MY_CART
-    })
-  }, [])
 
   return (
-    <div className="App">
-      <DanhSachSanPham />
-      <MyCart />
-      <DanhSachDonHang />
-      {/**
-      <FormTaoSanPham />
-     */}
+    <div>
+      <PageLayout>
+        <Routes>
+          <Route path="/">
+            <Route index element={<DanhSachSanPham />} />
+          </Route>
+          <Route path='danh-sach-don-hang' element={<DanhSachDonHang />} />
+          <Route path='tao-san-pham' element={<FormTaoSanPham />} />
+          <Route path='gio-hang' element={<MyCart />} />
+        </Routes>
+      </PageLayout>
+
+
     </div>
   );
 }

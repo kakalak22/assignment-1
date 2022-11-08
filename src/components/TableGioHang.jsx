@@ -48,31 +48,30 @@ const TableGioHang = ({ danhSachSanPham }) => {
     },
   ];
   return (
-    <div>
-      <Table
-        columns={columns}
-        dataSource={danhSachSanPham}
-        pagination={false}
-        rowKey={(record) => record.id}
-        summary={(pageData) => {
-          let tongCong = 0;
-          pageData.forEach(({ donGia, tienThue, soLuongSanPham }) => {
-            tongCong += (tienThue + donGia) * soLuongSanPham;
-          });
+    <Table
+      style={{ width: "100%" }}
+      columns={columns}
+      dataSource={danhSachSanPham}
+      pagination={false}
+      rowKey={(record) => record.id}
+      summary={(pageData) => {
+        let tongCong = 0;
+        pageData.forEach(({ donGia, tienThue, soLuongSanPham }) => {
+          tongCong += (tienThue + donGia) * soLuongSanPham;
+        });
 
-          return (
-            <Table.Summary.Row>
-              <Table.Summary.Cell index={0} colSpan={7} align="right">
-                <Title level={3}>Tổng cộng:</Title>
-              </Table.Summary.Cell>
-              <Table.Summary.Cell index={1} colSpan={1}>
-                <Title level={3}>{tongCong}</Title>
-              </Table.Summary.Cell>
-            </Table.Summary.Row>
-          );
-        }}
-      />
-    </div>
+        return (
+          <Table.Summary.Row>
+            <Table.Summary.Cell index={0} colSpan={7} align="right">
+              <Title level={3}>Tổng cộng:</Title>
+            </Table.Summary.Cell>
+            <Table.Summary.Cell index={1} colSpan={1}>
+              <Title level={3}>{tongCong}</Title>
+            </Table.Summary.Cell>
+          </Table.Summary.Row>
+        );
+      }}
+    />
   );
 };
 

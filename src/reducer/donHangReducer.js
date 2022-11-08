@@ -1,9 +1,7 @@
 import * as Actions from "../actionsTypes";
 
 const initialSate = {
-    donHang: [
-        { id: 1, ten: "Don hang 1", tongTruocThue: 10, tongThue: 5, tongTien: null }
-    ]
+    donHang: []
 }
 
 export default (state = initialSate, action) => {

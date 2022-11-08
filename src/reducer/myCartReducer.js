@@ -3,13 +3,11 @@ import * as Actions from "../actionsTypes";
 const initialSate = {
     myCart: {
         danhSachSanPham: [
-            { id: 1, ten: "A", linkHinhAnh: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png", donGia: 10, tienThue: 2, soLuongSanPham: 2, tongTruocThue: null, tongThue: null },
-            { id: 2, ten: "B", linkHinhAnh: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png", donGia: 10, tienThue: 2, soLuongSanPham: 1, tongTruocThue: null, tongThue: null },
         ],
-        tongCong: 10,
+        tongCong: null,
         tongThue: null,
         tongTruocThue: null,
-        soLuong: 2
+        soLuong: null
     }
 }
 

@@ -18,7 +18,6 @@ export default (state = initialSate, action) => {
         case Actions.DO_SAVE_DONG_DON_HANG: {
             const { data = {} } = action;
             const { copyDongDonHang } = data;
-            console.log(copyDongDonHang)
             return {
                 ...state,
                 dongDonHang: copyDongDonHang

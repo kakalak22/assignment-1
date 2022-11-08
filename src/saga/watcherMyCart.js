@@ -26,13 +26,12 @@ function* workerAddToCart(action) {
     let newTongCong = 0;
     let newTongThue = 0;
     let newTongTruocThue = 0;
-    let newSoLuong = 0;
+    let newSoLuong = copyDanhSachSanPham.length;
 
     danhSachSanPham.forEach(({ donGia, tienThue, soLuongSanPham }) => {
         newTongCong += (donGia + tienThue) * soLuongSanPham;
         newTongThue += tienThue * soLuongSanPham;
         newTongTruocThue += soLuongSanPham * donGia;
-        newSoLuong += soLuongSanPham;
     })
 
     const newMyCart = {

@@ -1,5 +1,5 @@
 import { delay, takeEvery, takeLatest, takeLeading, select, put, take, all, fork, spawn, call } from "redux-saga/effects";
-
+import { v4 as uuidv4 } from 'uuid';
 import * as Actions from "../actionsTypes";
 
 export function* watcherDonHang() {
@@ -11,7 +11,7 @@ export function* watcherDonHang() {
 
 function* workerThanhToanDonHang(action) {
     try {
-        console.log("THANH TOAN DON HANG WORKER");
+        const newId = uuidv4();
         const { data = {} } = action;
         const { myCart } = data;
         const { tongCong, tongTruocThue, tongThue } = myCart;
@@ -19,8 +19,8 @@ function* workerThanhToanDonHang(action) {
         const donHang = yield select(state => state.donHangReducer.donHang);
 
         const newDonHang = {
-            id: 2,
-            ten: "don hang 3",
+            id: newId,
+            ten: `Đơn hàng ${newId.substring(0, 7)}`,
             tongTruocThue: tongTruocThue,
             tongThue: tongThue,
             tongTien: tongCong
@@ -44,14 +44,13 @@ function* workerThanhToanDonHang(action) {
         yield put({
             type: Actions.SAVE_DONG_DON_HANG,
             data: {
-                newIdDonHang: 2,
+                newIdDonHang: newId,
                 newDongDonHang: [...myCart.danhSachSanPham]
             }
         })
 
         const resSaveDongDonHang = yield take(Actions.SAVE_DONG_DON_HANG_SUCCESS);
         const { isDongDonHangEqual } = resSaveDongDonHang.data;
-        console.log("dong don hang successfully saved");
 
         if (!isDonHangEqual && !isDongDonHangEqual) {
             yield put({
@@ -74,7 +73,6 @@ function* workerThanhToanDonHang(action) {
 
 function* workerSaveDonHangProcess(action) {
     try {
-        console.log("save don hang process");
         const { data = {} } = action;
         const { prevDonHang } = data;
         const donHang = yield select(state => state.donHangReducer.donHang);

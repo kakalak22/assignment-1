@@ -1,4 +1,4 @@
-import { Typography, Space, Table, Tag, Image, Button } from "antd";
+import { Typography, Space, Table, Tag, Image, Button, Divider } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TableGioHang from "./TableGioHang";
@@ -19,17 +19,16 @@ const MyCart = () => {
   };
 
   return (
-    <div>
-      <Typography>
-        <Title>Giỏ hàng</Title>
-      </Typography>
-      <Space direction="vertical">
+    <Space style={{ width: "100%" }} direction="vertical">
+      <Title style={{ marginTop: "1rem" }}>Giỏ hàng</Title>
+      <Divider />
+      <Space direction="vertical" style={{ width: "100%" }}>
         <TableGioHang danhSachSanPham={danhSachSanPham} />
         <Button type="primary" onClick={handleThanhToan}>
           Thanh toán
         </Button>
       </Space>
-    </div>
+    </Space>
   );
 };
 
