@@ -1,7 +1,7 @@
 import * as Actions from "../actionsTypes";
 
 const initialSate = {
-    donHang: []
+    donHang: [],
 }
 
 export default (state = initialSate, action) => {

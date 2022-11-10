@@ -1,4 +1,5 @@
-import { delay, takeEvery, takeLatest, takeLeading, select, put, take, all, fork, spawn, call } from "redux-saga/effects";
+import { notification } from "antd";
+import { takeLatest, select, put, take, } from "redux-saga/effects";
 import { v4 as uuidv4 } from 'uuid';
 import * as Actions from "../actionsTypes";
 
@@ -53,6 +54,11 @@ function* workerThanhToanDonHang(action) {
         const { isDongDonHangEqual } = resSaveDongDonHang.data;
 
         if (!isDonHangEqual && !isDongDonHangEqual) {
+            notification.success({
+                message: 'Don hang created',
+                description: "Successful",
+                placement: "bottomRight",
+            });
             yield put({
                 type: Actions.SAVE_ITEM_TO_CART,
                 data: {

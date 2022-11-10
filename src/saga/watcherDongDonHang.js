@@ -1,4 +1,4 @@
-import { delay, takeEvery, takeLatest, takeLeading, select, put, take, all, fork, spawn, call } from "redux-saga/effects";
+import { takeLeading, select, put } from "redux-saga/effects";
 
 import * as Actions from "../actionsTypes";
 

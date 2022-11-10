@@ -3,7 +3,6 @@ import { Typography, Table, Image } from "antd";
 
 const TableGioHang = ({ danhSachSanPham }) => {
   const { Title, Text } = Typography;
-
   const columns = [
     {
       title: "Hình ảnh",

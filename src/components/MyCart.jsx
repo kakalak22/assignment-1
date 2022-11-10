@@ -1,5 +1,5 @@
-import { Typography, Space, Table, Tag, Image, Button, Divider } from "antd";
-import React from "react";
+import { Typography, Space, Button, Divider } from "antd";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TableGioHang from "./TableGioHang";
 import * as Actions from "../actionsTypes";
@@ -7,9 +7,13 @@ import * as Actions from "../actionsTypes";
 const MyCart = () => {
   const { Title, Text } = Typography;
   const { myCart = {} } = useSelector((state) => state.myCartReducer);
-
+  const [isEmpty, setIsEmpty] = useState(true);
   const { danhSachSanPham } = myCart;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    myCart.danhSachSanPham.length > 0 ? setIsEmpty(false) : setIsEmpty(true);
+  }, [myCart]);
 
   const handleThanhToan = () => {
     dispatch({
@@ -24,7 +28,7 @@ const MyCart = () => {
       <Divider />
       <Space direction="vertical" style={{ width: "100%" }}>
         <TableGioHang danhSachSanPham={danhSachSanPham} />
-        <Button type="primary" onClick={handleThanhToan}>
+        <Button disabled={isEmpty} type="primary" onClick={handleThanhToan}>
           Thanh toán
         </Button>
       </Space>

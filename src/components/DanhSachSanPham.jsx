@@ -1,5 +1,5 @@
 import { Typography, Divider, Space, Col, Row, Badge } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux/es/exports";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
