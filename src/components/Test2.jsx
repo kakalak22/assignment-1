@@ -5,12 +5,11 @@ import { Image, Table } from "antd";
 
 const Test2 = () => {
   const dispatch = useDispatch();
-  const { listPlayer = [] } = useSelector((state) => state.apiReducer);
-  console.log(listPlayer);
+  const { listDog = [] } = useSelector((state) => state.apiReducer);
   useEffect(() => {
-    // dispatch({
-    //   type: Actions.CALL_API,
-    // });
+    dispatch({
+      type: Actions.CALL_API,
+    });
   }, []);
 
   const columns = [
@@ -76,7 +75,6 @@ const Test2 = () => {
   return (
     <Table
       columns={columns}
-      dataSource={listPlayer}
       pagination={false}
       rowKey={(record) => record.ID}
     />

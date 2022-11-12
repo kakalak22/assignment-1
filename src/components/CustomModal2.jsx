@@ -1,9 +1,14 @@
-import { Button, Col, Modal, Row } from "antd";
+import { Button, Col, Modal, Row, Space } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import Draggable from "react-draggable";
-import { MinusCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
-const CustomModal2 = ({ isDraggable, isModalOpen, closeModal, children }) => {
+const CustomModal2 = ({
+  customHeaderButtons,
+  isDraggable,
+  isModalOpen,
+  closeModal,
+  children,
+}) => {
   const [disabled, setDisabled] = useState(false);
   const [bounds, setBounds] = useState({
     left: 0,
@@ -33,6 +38,11 @@ const CustomModal2 = ({ isDraggable, isModalOpen, closeModal, children }) => {
       top: -targetRect.top + uiData.y,
       bottom: clientHeight - (targetRect.bottom - uiData.y),
     });
+  };
+
+  const customHeaderStyles = {
+    display: "flex",
+    justifyContent: "space-between",
   };
 
   const draggableModalProps = {
@@ -77,28 +87,14 @@ const CustomModal2 = ({ isDraggable, isModalOpen, closeModal, children }) => {
     return (
       <React.Fragment>
         <Modal
-          closable={false}
+          closable={customHeaderButtons ? false : true}
           title={
-            <Row {...draggableModalProps.title}>
-              <Col span={15}>
+            <Space style={customHeaderStyles}>
+              <Space {...draggableModalProps.title}>
                 <span>Draggable Modal</span>
-              </Col>
-              <Col span={3}>
-                <Button>
-                  <MinusCircleOutlined />
-                </Button>
-              </Col>
-              <Col span={3}>
-                <Button>
-                  <MinusCircleOutlined />
-                </Button>
-              </Col>
-              <Col span={3}>
-                <Button>
-                  <CloseCircleOutlined />
-                </Button>
-              </Col>
-            </Row>
+              </Space>
+              <Space>{customHeaderButtons?.map((title) => title)}</Space>
+            </Space>
           }
           {...draggableModalProps.restProps}
         >

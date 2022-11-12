@@ -24,7 +24,7 @@ function App() {
           <Route path='tao-san-pham' element={<FormTaoSanPham />} />
           <Route path='gio-hang' element={<MyCart />} />
           <Route path='test' element={<Test />} />
-          <Route path='test2' element={<CustomModal2 />} />
+          <Route path='test2' element={<Test2 />} />
         </Routes>
       </PageLayout>
 

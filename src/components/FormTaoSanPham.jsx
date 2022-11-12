@@ -10,6 +10,8 @@ import {
   Typography,
   Upload,
 } from "antd";
+import { MinusCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+
 import { useDispatch } from "react-redux";
 import * as Actions from "../actionsTypes";
 import { storage } from "../firebase-config";
@@ -23,8 +25,6 @@ const FormTaoSanPham = () => {
   const [imageUrl, setImageUrl] = useState();
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  console.log(isModalOpen);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -95,6 +95,12 @@ const FormTaoSanPham = () => {
         isModalOpen={isModalOpen}
         closeModal={closeModal}
         isDraggable={true}
+        // customHeaderButtons={[
+        //   <Button onClick={closeModal}>
+        //     <MinusCircleOutlined />
+        //   </Button>,
+        //   <MinusCircleOutlined />,
+        // ]}
       >
         <Title>HI</Title>
       </CustomModal2>

@@ -8,11 +8,13 @@ export function* watcherApiCall() {
 
 export function* workerCallApi(action) {
     try {
+        console.log("first")
         let res = yield call(workerDoApiCall);
+        console.log(res);
         yield put({
             type: Actions.SAVE_LIST_PLAYER,
             data: {
-                listPlayer: res
+                listDog: res
             }
         })
     } catch (error) { }
@@ -21,11 +23,9 @@ export function* workerCallApi(action) {
 function workerDoApiCall(action) {
     const options = {
         method: 'GET',
-        url: 'https://flashlive-sports.p.rapidapi.com/v1/search/multi-search',
-        params: { locale: 'en_INT', query: 'mess' },
-        headers: {
-            'X-RapidAPI-Key': '9b71ac4dc7msh58e029c875dd331p1d416fjsn0852c04b00e7',
-            'X-RapidAPI-Host': 'flashlive-sports.p.rapidapi.com'
+        url: 'http://shibe.online/api/shibes',
+        params: {
+            count: 200
         }
     };
 
